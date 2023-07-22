@@ -1,0 +1,953 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+  branch: master
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - &ref_0
+        label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - name: columns
+    label: Columns
+    folder: cms/columns
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_tags
+        label: Tags
+        widget: string
+        required: false
+      - hint: ''
+        name: f_thumbnail
+        label: Thumbnail
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: columns
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[columns].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: my_exercise
+    label: My Exercises
+    folder: cms/my-exercise
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_minutes
+        label: Minutes
+        widget: number
+        required: false
+      - hint: ''
+        name: f_calories
+        label: Calories
+        widget: number
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: my-exercise
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[my-exercise].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: my_diary
+    label: My Diaries
+    folder: cms/my-diary
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_long-text
+        label: Long Text
+        widget: text
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: my-diary
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[my-diary].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: menu_records
+    label: Menu Records
+    folder: cms/menu-records
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_thumbnails
+        label: Thumbnails
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: menu-records
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[menu-records].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: 自分の記録, key: 4cc9be2c'
+            label: Text
+            name: 4cc9be2c
+            widget: string
+          - hint: 'Original text: チャレンジ, key: -3a015371'
+            label: Text
+            name: '-3a015371'
+            widget: string
+          - hint: 'Original text: 1, key: 31'
+            label: Text
+            name: '31'
+            widget: string
+          - hint: 'Original text: お知らせ, key: 17bb970d'
+            label: Text
+            name: 17bb970d
+            widget: string
+          - hint: 'Original text: 体重グラフ, key: -5f29b15e'
+            label: Text
+            name: '-5f29b15e'
+            widget: string
+          - hint: 'Original text: 目標, key: ed0eb'
+            label: Text
+            name: ed0eb
+            widget: string
+          - hint: 'Original text: 選択中のコース, key: -5d0e9b7'
+            label: Text
+            name: '-5d0e9b7'
+            widget: string
+          - hint: 'Original text: コラム一覧, key: -3ac031cf'
+            label: Text
+            name: '-3ac031cf'
+            widget: string
+          - hint: 'Original text: 設定, key: 11170d'
+            label: Text
+            name: 11170d
+            widget: string
+          - hint: 'Original text: 05/21 , key: 54e99ab7'
+            label: Text
+            name: 54e99ab7
+            widget: string
+          - hint: 'Original text: 75%, key: d507'
+            label: Text
+            name: d507
+            widget: string
+          - hint: 'Original text: No items found., key: 3d503d2b'
+            label: Text
+            name: 3d503d2b
+            widget: string
+          - hint: 'Original text: 記録をもっと見る, key: 4c612a4f'
+            label: Text
+            name: 4c612a4f
+            widget: string
+          - hint: 'Original text: 会員登録, key: 2542af5e'
+            label: Text
+            name: 2542af5e
+            widget: string
+          - hint: 'Original text: 運営会社, key: 42e3556f'
+            label: Text
+            name: 42e3556f
+            widget: string
+          - hint: 'Original text: 利用規約, key: 272201b4'
+            label: Text
+            name: 272201b4
+            widget: string
+          - hint: 'Original text: 個人情報の取扱について, key: 3ebbd8c9'
+            label: Text
+            name: 3ebbd8c9
+            widget: string
+          - hint: 'Original text: 特定商取引法に基づく表記, key: -4d079f26'
+            label: Text
+            name: '-4d079f26'
+            widget: string
+          - hint: 'Original text: お問い合わせ, key: 303dc0b5'
+            label: Text
+            name: 303dc0b5
+            widget: string
+          - hint: 'Original text: BODY RECORD, key: 71b6dc8f'
+            label: Text
+            name: 71b6dc8f
+            widget: string
+          - hint: 'Original text: 自分のカラダの記録, key: 4cc35ff8'
+            label: Text
+            name: 4cc35ff8
+            widget: string
+          - hint: 'Original text: MY EXERCISE, key: -17e91634'
+            label: Text
+            name: '-17e91634'
+            widget: string
+          - hint: 'Original text: 自分の運動の記録, key: 23ea498c'
+            label: Text
+            name: 23ea498c
+            widget: string
+          - hint: 'Original text: MY DIARY, key: -22bf67d1'
+            label: Text
+            name: '-22bf67d1'
+            widget: string
+          - hint: 'Original text: 自分の日記, key: 4cc552e5'
+            label: Text
+            name: 4cc552e5
+            widget: string
+          - hint: 'Original text: BODY, key: 1f31a2'
+            label: Text
+            name: 1f31a2
+            widget: string
+          - hint: 'Original text: RECORD, key: -70269faf'
+            label: Text
+            name: '-70269faf'
+            widget: string
+          - hint: 'Original text: 2021.05.21, key: 3e752297'
+            label: Text
+            name: '3e752297'
+            widget: string
+          - hint: 'Original text: 日, key: 65e5'
+            label: Text
+            name: '65e5'
+            widget: string
+          - hint: 'Original text: 週, key: 9031'
+            label: Text
+            name: '9031'
+            widget: string
+          - hint: 'Original text: 月, key: 6708'
+            label: Text
+            name: '6708'
+            widget: string
+          - hint: 'Original text: 年, key: 5e74'
+            label: Text
+            name: '5e74'
+            widget: string
+          - hint: 'Original text: MY, key: 9ac'
+            label: Text
+            name: 9ac
+            widget: string
+          - hint: 'Original text: EXERCISE, key: -56c90e28'
+            label: Text
+            name: '-56c90e28'
+            widget: string
+          - hint: 'Original text: 家事全般（立位・軽い）, key: 3c9f75d8'
+            label: Text
+            name: 3c9f75d8
+            widget: string
+          - hint: 'Original text: 26kcal, key: 587d67c7'
+            label: Text
+            name: 587d67c7
+            widget: string
+          - hint: 'Original text: 10 min, key: 565210d1'
+            label: Text
+            name: 565210d1
+            widget: string
+          - hint: 'Original text: 23:25, key: 2d8a61c'
+            label: Text
+            name: 2d8a61c
+            widget: string
+          - hint: 'Original text: 私の日記の記録が一部表示されます。, key: 5af9e2f2'
+            label: Text
+            name: 5af9e2f2
+            widget: string
+          - hint: >-
+              Original text:
+              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト…,
+              key: -4206f0e6
+            label: Text
+            name: '-4206f0e6'
+            widget: string
+          - hint: 'Original text: 自分の日記をもっと見る, key: -65f65326'
+            label: Text
+            name: '-65f65326'
+            widget: string
+          - hint: 'Original text: RECOMMENDED COLUMN, key: 1b71d4db'
+            label: Text
+            name: 1b71d4db
+            widget: string
+          - hint: 'Original text: オススメ, key: 16dc14d7'
+            label: Text
+            name: 16dc14d7
+            widget: string
+          - hint: 'Original text: RECOMMENDED DIET, key: -62005147'
+            label: Text
+            name: '-62005147'
+            widget: string
+          - hint: 'Original text: ダイエット, key: -3a2d1357'
+            label: Text
+            name: '-3a2d1357'
+            widget: string
+          - hint: 'Original text: RECOMMENDED BEAUTY, key: 192b1201'
+            label: Text
+            name: 192b1201
+            widget: string
+          - hint: 'Original text: 美容, key: fcdeb'
+            label: Text
+            name: fcdeb
+            widget: string
+          - hint: 'Original text: RECOMMENDED HEALTH, key: 236803e1'
+            label: Text
+            name: '236803e1'
+            widget: string
+          - hint: 'Original text: 健康, key: a1af2'
+            label: Text
+            name: a1af2
+            widget: string
+          - hint: "Original text: 2021.05.17 \_ 23:25, key: 4f6022fa"
+            label: Text
+            name: 4f6022fa
+            widget: string
+          - hint: 'Original text: 魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリ…, key: -209dbc1f'
+            label: Text
+            name: '-209dbc1f'
+            widget: string
+          - hint: "Original text: #魚料理 \_#和食 \_#DHA, key: 2df13c0c"
+            label: Text
+            name: 2df13c0c
+            widget: string
+          - hint: 'Original text: コラムをもっと見る, key: 5dac573f'
+            label: Text
+            name: 5dac573f
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: /my-record/, key: -f498bb4'
+            label: Link
+            name: '-f498bb4'
+            widget: string
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: /columns/, key: 1367c521'
+            label: Link
+            name: 1367c521
+            widget: string
+          - hint: 'Original link: /my-full-record/, key: -68ab70ce'
+            label: Link
+            name: '-68ab70ce'
+            widget: string
+          - hint: 'Original link: #Header, key: -43ec1770'
+            label: Link
+            name: '-43ec1770'
+            widget: string
+          - hint: 'Original link: #body-record, key: 11967ed9'
+            label: Link
+            name: 11967ed9
+            widget: string
+          - hint: 'Original link: #my-exercise, key: 73f8b4d6'
+            label: Link
+            name: 73f8b4d6
+            widget: string
+          - hint: 'Original link: #my-diary, key: -2c763e7b'
+            label: Link
+            name: '-2c763e7b'
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: 5f15ddb9
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i198f43b3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2a484e45'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7780aadc
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 4edc3aad
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-57dddfb0'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 798a1081
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 524d2e5f
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 4bac9558
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 27d256f5
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 772106d9
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 772f1e5a
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 773d35db
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 5fab435f
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5df1d56'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-12fbf779'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-12eddff8'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-12dfc877'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-12d1b0f6'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-12c39975'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-12b581f4'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-12a76a73'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-129952f2'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
