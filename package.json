@@ -1,7 +1,7 @@
 {
   "name": "website-1-a9fadf",
   "dependencies": {
-    "@11ty/eleventy": "^0.12.1",
+    "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-img": "^4.0.2",
     "archiver": "^5.2.0",
     "extract-zip": "^2.0.1",
